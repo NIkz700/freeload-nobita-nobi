@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Smuggling Simulation</title>
+</head>
+<body>
+    <h1>HTML Smuggling Simulation</h1>
+    <p>Click the button below to generate and download a harmless file.</p>
+    <button id="smuggle">Download File</button>
+
+    <script>
+        document.getElementById("smuggle").addEventListener("click", function () {
+            // Harmless file content
+            const content = "This is a harmless simulation of HTML smuggling.";
+            const blob = new Blob([content], { type: "text/plain" });
+            const link = document.createElement("a");
+
+            // Create a downloadable link
+            link.href = URL.createObjectURL(blob);
+            link.download = "smuggled_file.txt";
+
+            // Trigger the download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
